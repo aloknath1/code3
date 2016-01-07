@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/style.css" />
+<script src="js/bootstrap.js"></script>
+
+<style>
+	.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+
+</style>
+</head>
+<body>
+<div class="container-fluid">
+	<div id="header">		
+		<div id="header_left">
+			<h1>Resource Distribution</h1>
+			<img src="images/analysis.png" title="Analysis" />
+		</div>
+		<div id="header_mid">
+			middle portion
+			<!--<img src="images/logo.png" alt="logo" title="logo" /> -->
+		</div>
+		<div id="header_right">
+			<div id="date_time"></div>
+		</div>
+	</div>
+	<div id="content" class="col-md-12">
+		<ul>
+			<li>
+				<div id="charts" class="col-md-12">
+					<div class="bar_chart1" class="col-md-4"></div>
+					<div class="donut_chart" class="col-md-4"></div>
+					<div class="bar_chart2" class="col-md-4"></div>
+				</div>	
+			</li>
+			<li>
+				<div id="down_arrow">
+					<img src="images/down_arrow.png"  width="114px" height="33px" alt="down arrow" title="down arrow"/>				
+				</div>
+			</li>
+			<li>
+				<div id="line_graph" class="col-md-12"></div>
+			</li>	
+		</ul>
+	</div>
+	<div>footer</div>
+</div>
+<script src="js/d3.v3.min.js"></script>
+<script src="js/common.js"></script>
+</body>
+</html>
