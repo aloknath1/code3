@@ -1,22 +1,23 @@
 $(document).ready(function(){
-	
+	var global_json = {};
 	
 	d3.json("../project3/data/sample.json",function(error,response){
-		console.log(response);	
-		ul = d3.select(".list_block").append("ul");
+		
+		global_json = response;
+		
+		var ul = d3.select(".list_block").append("ul");
 		response.forEach(function(data, i) { 			
 			if(data.emplevel == 1)
 			{					
 				var li = ul.append("li");
 				
 				var div_list_heading = li.append("div")
-						   .attr("class","list_heading");
-						   
+						   .attr("class","list_heading");						   
 						   
 				var div_list_heading_para = div_list_heading.append("p")
 						   .text(data.name)
 						 div_list_heading.append("p")
-						   .text(data.description);
+						   .text(data.job_description);
 						   
 				var div_description = li.append("div")
 						   .attr("class","description");
@@ -27,16 +28,22 @@ $(document).ready(function(){
 				
 				var div_direct = li.append("div")
 								   .attr("data-toggle","tab")
-								   .attr("class","direct").append("p").text("Directs");
+								   .attr("id","worker_"+data.WORKER_ID)
+								   .attr("class","direct").append("p").text("Directs")
+								   .on("click", function(){
+										displayLevel2Emp(data.WORKER_ID);										
+									});
 								   
+				
+				var direct_value = 	total_directs(data.WORKER_ID);
+					
 				var numbers = 	div_direct.append("div")
 										  .attr("class","numbers")
-										  .text("6");				
+										  .text(direct_value);				
 			}
 		});
 	});	
-	
-	
+		
 	var slideCount = $('#slider ul li').length;
     var slideWidth = $('#slider ul li').width();
     var slideHeight = $('#slider ul li').height();
@@ -48,7 +55,34 @@ $(document).ready(function(){
 
     $('#slider ul li:last-child').prependTo('#slider ul');
 
-    function moveLeft() {
+	function total_directs(worker_id)
+	{		
+		var count = 0;
+		global_json.forEach(function(dd, i) { 	
+			if(dd.emplevel == 2 && dd.SUPERVISOR_PARTY_ID == worker_id)
+			{
+				count++;
+			}			
+		});
+		
+		return count;
+	}	
+  
+	function displayLevel2Emp(worker_id)
+	{
+		d3.select("#level_two_members").html("");
+		var ul = d3.select("#level_two_members").append("ul").attr("class","list_members");		
+		var li = '';
+		
+		global_json.forEach(function(dd, i) { 	
+			if(dd.emplevel == 2 && dd.SUPERVISOR_PARTY_ID == worker_id)
+			{				
+				var li = ul.append("li").append("a").attr("href","#").text(dd.name);				
+			}			
+		});		
+	}
+	
+	function moveLeft() {
         $('#slider ul').animate({
             left: + slideWidth
         }, 200, function () {
