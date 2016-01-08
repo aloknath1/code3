@@ -1,66 +1,75 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Project 3</title>
-<meta charset="utf-8">
-<link rel="stylesheet" href="css/bootstrap.css" />
-<link rel="stylesheet" href="css/style.css" />
-<script src="js/jquery-1.11.3.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/d3.v3.min.js"></script>
-<script src="js/common.js"></script>
-</head>
+    <title>Project 3</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/bootstrap.css" />
+	
+    <link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/lightslider.css" />
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/bootstrap.js"></script>
+	<script src="js/lightslider.js"></script>  	
+    <script src="js/d3.v3.min.js"></script>	
+   <script src="js/common.js"></script>
+   <script>
+    	 $(document).ready(function() {
+		 console.log("i m called");
+			
+           
+		});
+    </script>
+	
+   </head>
+
 <body>
-<div class="container">
-	<div class="header col-md-12">		
-		<h1>EIBI Resource Distribution</h1>	
-		<span class="tag_name">Select a unit, for it's detailed analysis</span>
-	</div>
-	<div class="content col-md-12">
-		<div class="content_left col-md-6">
-			<h2 class="first_level_person">James Miller</h2>
-			<p>Vice President, Enterprise Infrastructure & Business Intelligence</p>
-				<br/>
-				...
-				<br/>
-				Unit: 07800
-				<br/>
-				Ent Infra & Business Intel
- 			</p>		
-		</div>
-		<div class="content_right col-md-6">
-			<ul class="list_item">
-				<li>
-					<h4>Directs</h4>
-					<div class="numbers">06</div>	
-				</li>
-				<li>
-					<h4>Total Count</h4>
-					<div class="numbers">06</div>		
-				</li>
-				<li>
-					<h4>Total Cost</h4>
-					<div class="numbers">06</div>		
-				</li>
-				<li>
-					<h4>Total Hours</h4>
-					<div class="numbers">06</div>		
-				</li>				
-			</ul>
-		</div>
-		
-		<div class="content_bottom col-md-12">
-			<div id="slider" class="list_block">
-				<a href="#" class="control_next">>></a>
-				<a href="#" class="control_prev"><</a>
-			</div>
+    <div class="container">
+        <div class="header col-md-12">
+            <h1>EIBI Resource Distribution</h1>
+            <span class="tag_name">Select a unit, for it's detailed analysis</span>
+        </div>
+        <div class="content col-md-12">
+            <div class="content_left col-md-6">
+                <h2 class="first_level_person">James Miller</h2>
+                <p>Vice President, Enterprise Infrastructure & Business Intelligence</p>
+                <br/> ...
+                <br/> Unit: 07800
+                <br/> Ent Infra & Business Intel
+                </p>
+            </div>
+            <div class="content_right col-md-6">
+                <ul class="list_item">
+                    <li>
+                        <h4>Directs</h4>
+                        <div class="numbers">06</div>
+                    </li>
+                    <li>
+                        <h4>Total Count</h4>
+                        <div class="numbers">06</div>
+                    </li>
+                    <li>
+                        <h4>Total Cost</h4>
+                        <div class="numbers">06</div>
+                    </li>
+                    <li>
+                        <h4>Total Hours</h4>
+                        <div class="numbers">06</div>
+                    </li>
+                </ul>
+            </div>
 
-			<div class="tab-content clearfix">
-				<div class="tab-pane active" id="level_two_members"></div>				
-			</div>
-		</div>
-	</div>	
-</div>
+            <div class="content_bottom col-md-12">
+                <div id="slider" class="list_block">
+                  
+                </div>
 
+                <div class="tab-content clearfix">
+                    <div class="tab-pane active" id="level_two_members"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-</html>	
+
+</html>
