@@ -20,7 +20,7 @@ var vis = d3.select(".listbody")
 					$(this).toggleClass("active");
 					listbodystatus++;
 					
-				}else if(globalid == $(this).id)
+				}else if(globalid == $(this).id && listbodystatus > 1)
 				{
 					$(selector).toggleClass("in");
 					listbodystatus = 1;
@@ -33,4 +33,12 @@ var vis = d3.select(".listbody")
 						$(selector).html("abc");
 					},1400);
 				}
+				
+				$(".slolist").empty();
+				$(",progress-bar sloprogresscompletion").empty();
+				
+				setTimeout(function(){
+					drawSLO(d);
+				},900);
+				
 			})
