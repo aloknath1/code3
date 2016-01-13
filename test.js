@@ -25,25 +25,23 @@ var vis = d3.select(".listbody")
 					$(this).toggleClass("active");
 					listbodystatus++;
 					
-				}else if(listbodystatus > 1){					
+				}else if(divlist.indexOf(globalid) > -1){	
+					console.log("div id exists--"+globalid);
+					//$(selector).toggleClass("in");
+					$(selector).removeClass("in");
+					divlist.splice(divlist.indexOf(globalid),1);
+					listbodystatus = 1;
 					
-					if((divlist.indexOf(globalid) > -1))
-					{
-						console.log("div id exists--"+globalid);
-						$(selector).toggleClass("in");
-						divlist.splice(divlist.indexOf(globalid),1);
-						
-					}else{				
+				}else{					
+					$(this).toggleClass("active");
+					setTimeout(function(){
 						console.log("div id does not exists---"+globalid);
 						divlist.push(globalid);
-					}
-					
-					console.log(divlist);
-						
-					$(selector).html("abc");				
-					listbodystatus = 1;
+						$(selector).html("abc");	
+						listbodystatus++;
+					},1400);					
 				}
-				
+						
 				$(".slolist").empty();
 				$(".progress-bar sloprogresscompletion").empty();
 				
