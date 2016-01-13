@@ -1,5 +1,5 @@
 var listbodystatus = 1;
-var globalid = '';
+var divlist = new Array();
 var vis = d3.select(".listbody")
 			.selectAll("div")
 			.data(data)
@@ -13,22 +13,27 @@ var vis = d3.select(".listbody")
 			
 				d3.selectAll(".listbody div").classed("active",false);
 				var selector = $(this).data("target");
-				if(listbodystatus === 1 && globalid == '')
+				if(listbodystatus === 1)
 				{
-					globalid = $(this).id;
+					//globalid = $(this).id;
+					if(divlist.length == 0 || (divlist.indexOf($(this).id) == -1)){
+						divlist.push($(this).id);
+					}
+					
 					$(selector).toggleClass("in");
 					$(this).toggleClass("active");
 					listbodystatus++;
 					
-				}else if(globalid == $(this).id && listbodystatus > 1)
+				}else if((divlist.indexOf($(this).id) > -1) && listbodystatus > 1)
 				{
 					$(selector).toggleClass("in");
 					listbodystatus = 1;
-				}else{
+					
+				}else if(listbodystatus > 1 && (divlist.indexOf($(this).id) == -1)){
 					$(selector).removeClass('in');
 					$(this).toggleClass('active');
 					setTimeout(function(){
-						
+						divlist.push($(this).id);
 						$(selector).addClass('in');						
 						$(selector).html("abc");
 					},1400);
