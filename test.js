@@ -11,35 +11,24 @@ var vis = d3.select(".listbody")
 			.attr("data-target","#demo")
 			.attr("id",function(d,i){ return "div"+i;})
 			.on("click",function(d){
-				globalid = d3.select(this).attr('id'); 
+				
 				d3.selectAll(".listbody div").classed("active",false);
 				var selector = $(this).data("target");
 				if(listbodystatus === 1)
 				{
-					//globalid = $(this).id;
-					if(divlist.length == 0 || (divlist.indexOf(globalid) == -1)){
-						divlist.push(globalid);
-					}
-					console.log("first time");
+					globalid = d3.select(this).attr('id'); 					
 					$(selector).toggleClass("in");
 					$(this).toggleClass("active");
 					listbodystatus++;
 					
-				}else if(divlist.indexOf(globalid) > -1){	
-					console.log("div id exists--"+globalid);
-					//$(selector).toggleClass("in");
-					$(selector).removeClass("in");
-					divlist.splice(divlist.indexOf(globalid),1);
-					listbodystatus = 1;
+				}else if(listbodystatus > 1){	
 					
-				}else{					
 					$(this).toggleClass("active");
 					setTimeout(function(){
-						console.log("div id does not exists---"+globalid);
-						divlist.push(globalid);
+						globalid = d3.select(this).attr('id'); 		
 						$(selector).html("abc");	
 						listbodystatus++;
-					},1400);					
+					},1000);					
 				}
 						
 				$(".slolist").empty();
