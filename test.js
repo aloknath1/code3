@@ -1,5 +1,6 @@
 var listbodystatus = 1;
 var divlist = new Array();
+var globalid = '';
 var vis = d3.select(".listbody")
 			.selectAll("div")
 			.data(data)
@@ -10,34 +11,31 @@ var vis = d3.select(".listbody")
 			.attr("data-target","#demo")
 			.attr("id",function(d,i){ return "div"+i;})
 			.on("click",function(d){
-			
+				globalid = d3.select(this).attr('id'); 
 				d3.selectAll(".listbody div").classed("active",false);
 				var selector = $(this).data("target");
 				if(listbodystatus === 1)
 				{
 					//globalid = $(this).id;
-					if(divlist.length == 0 || (divlist.indexOf($(this).id) == -1)){
-						divlist.push($(this).id);
+					if(divlist.length == 0 || (divlist.indexOf(globalid) == -1)){
+						divlist.push(globalid);
 					}
 					
 					$(selector).toggleClass("in");
 					$(this).toggleClass("active");
 					listbodystatus++;
 					
-				}else if((divlist.indexOf($(this).id) > -1))
-				{
-					$(selector).toggleClass("in");
-					divlist.splice(divlist.indexOf($(this).id));
-					listbodystatus = 1;
-					
-				}else if(listbodystatus > 1 && (divlist.indexOf($(this).id) == -1)){
-					
-					//$(this).toggleClass('active');
-					//setTimeout(function(){
-						divlist.push($(this).id);
-					    listbodystatus = 1;
-						$(selector).html("abc");
-					//},1400);
+				}else{					
+					if((divlist.indexOf(globalid) > -1))
+					{
+						$(selector).toggleClass("in");
+						divlist.splice(divlist.indexOf(globalid),1);
+						
+					}else{					
+						divlist.push(globalid);
+						listbodystatus = 1;
+						$(selector).html("abc");				
+					}
 				}
 				
 				$(".slolist").empty();
