@@ -20,22 +20,28 @@ var vis = d3.select(".listbody")
 					if(divlist.length == 0 || (divlist.indexOf(globalid) == -1)){
 						divlist.push(globalid);
 					}
-					
+					console.log("first time");
 					$(selector).toggleClass("in");
 					$(this).toggleClass("active");
 					listbodystatus++;
 					
-				}else{					
+				}else if(listbodystatus > 1){					
+					
 					if((divlist.indexOf(globalid) > -1))
 					{
+						console.log("div id exists--"+globalid);
 						$(selector).toggleClass("in");
 						divlist.splice(divlist.indexOf(globalid),1);
 						
-					}else{					
+					}else{				
+						console.log("div id does not exists---"+globalid);
 						divlist.push(globalid);
-						listbodystatus = 1;
-						$(selector).html("abc");				
 					}
+					
+					console.log(divlist);
+						
+					$(selector).html("abc");				
+					listbodystatus = 1;
 				}
 				
 				$(".slolist").empty();
