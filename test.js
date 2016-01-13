@@ -24,26 +24,30 @@ var vis = d3.select(".listbody")
 					$(this).toggleClass("active");
 					listbodystatus++;
 					
-				}else if((divlist.indexOf($(this).id) > -1) && listbodystatus > 1)
+				}else if((divlist.indexOf($(this).id) > -1))
 				{
 					$(selector).toggleClass("in");
+					divlist.splice(divlist.indexOf($(this).id));
 					listbodystatus = 1;
 					
 				}else if(listbodystatus > 1 && (divlist.indexOf($(this).id) == -1)){
-					$(selector).removeClass('in');
-					$(this).toggleClass('active');
-					setTimeout(function(){
+					
+					//$(this).toggleClass('active');
+					//setTimeout(function(){
 						divlist.push($(this).id);
-						$(selector).addClass('in');						
+					    listbodystatus = 1;
 						$(selector).html("abc");
-					},1400);
+					//},1400);
 				}
 				
 				$(".slolist").empty();
-				$(",progress-bar sloprogresscompletion").empty();
+				$(".progress-bar sloprogresscompletion").empty();
 				
 				setTimeout(function(){
 					drawSLO(d);
 				},900);
 				
 			})
+			
+			
+			
