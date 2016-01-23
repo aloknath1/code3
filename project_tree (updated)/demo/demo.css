@@ -81,31 +81,82 @@ header h1 {
 
 
 /*******************************************************************************************************************************************/
- section ul {
+ section #js-menu{
     margin: 0;
 	list-style-type: none;
 	width:100%;
   }
 
-  section ul li 
+  #js-menu li 
   {
 	display:inline;
+	width:100%;
 	float:left;
+	margin-bottom:2%;
+	cursor:pointer;
+	border:1px solid #ccc;
+ }
+
+  #js-menu .right_div
+  {
+	width:100%;	
+	margin-top:5px;		
+ }
+  #js-menu .right_div p
+  {
+	margin:0 !important;
+	padding:0 !important;
+	
+  }
+  .left_div
+  {
+	width:40%;
+	float:left;	
+	margin-top:5px;
+	display:block;	
+	
+ }
+ 
+  .left_div label div img{
+	
+	margin:0;
+	width:40px;
+	height:40px;
+	padding:0;
+	
+ }
+ 
+ .vertical_nav {
+	width:250px !important;
+ }
+ .menu--item {   
+    min-height: 100px !important;   
+}
+
+   .left_div p
+  {
+   margin:0;
+	padding:0;
+	width:40px;
+	
+ }
+ 
+ 
+ #charts
+ {
+ margin-left:3%;
  }
  
  .bar_chart1,.bar_chart2
 {
 	float:left;		
-	width:400px;
+	width:350px;
 	height:400px;
 	margin:0 !important;
 	padding:0 !important;
 }
 
-img{
-	margin:5px;
-	float:left;
-}
+
 
 .person_name
 {

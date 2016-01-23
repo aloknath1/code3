@@ -22,36 +22,20 @@ var vis = d3.select("#date_time")
 
 $(document).ready(function(){
 	
-	list += '<li id="worker_0" onclick="graphs("worker_0")" class="menu--item  menu--item"><label class="menu--link" title="James Smith"><img src="'+image+'" alt="James Smith" /><span class="menu--label">James Smith</span></label></li>';
+	list += '<li id="worker_0" onclick="graphs("worker_0")" class="menu--item  menu--item"><div class="left_div"><label class="menu--link" title="James Smith"><img src="'+image+'" alt="James Smith" /><p>Unit: 123</p></label></div><div class="right_div"><p>James Smith</p><p>CEO</p></div></li>';
 	
 	//for level1
-	 $.getJSON('sample.json', function(data) {	
+	 $.getJSON('http://localhost:8100/d3_practice/project_tree/demo/sample.json', function(data) {	
 		dtlist = data;
 		$.each(data,function(key,value){			
 			if(value.emplevel == 1){	
 				
-				list += '<li id="worker_'+value.workerId+'" onclick="graphs('+value.workerId+')" class="menu--item  menu--item"><label class="menu--link" title="'+value.name+'"><img src="'+image+'" alt="'+value.name+'" /><span class=menu--label">'+value.name+'</span></label><ul class="sub_menu"></ul></li>';			
+				list += '<li id="worker_'+value.workerId+'" onclick="graphs('+value.workerId+')" class="menu--item  menu--item"><div class="left_div"><label class="menu--link" title="'+value.name+'"><img src="'+image+'" alt="'+value.name+'" /><p>Unit: "'+value.unit+'"</p></label></div><div class="right_div"><p>'+value.name+'</p><p>"'+value.designation+'"</p></div></li>';			
 				level1_workerid.push(value.workerId);
 			}
 		});
 		 //console.log(level1_workerid);
-		$("ul#js-menu").append(list);	
-			
-		//for level2
-		$.each(dtlist,function(key1,value1){			
-			if(value1.emplevel == 2 && level1_workerid.indexOf(value1.supervisorId) > -1)
-			{
-				//adding the has class
-				if(!$('#worker_'+value1.supervisorId).hasClass("__has_sub_menu")){
-					$('#worker_'+value1.supervisorId).addClass('__has_sub_menu');
-										
-				}
-				
-				var lvl2list = '<li onclick="graphs('+value1.workerId+')" id="worker_'+value1.workerId+'" class="sub_menu--item">'+value1.name+'</li>';									
-			}
-			$('#worker_'+value1.supervisorId+' ul').append(lvl2list);
-		});		
-	
+		$("ul#js-menu").append(list);
 	 });
 });
 
