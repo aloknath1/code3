@@ -62,8 +62,8 @@ $(document).ready(function () {
         $.each(data1, function (key, value) {
             if (value.emplevel == 1) {
 				var worker_id = value.WORKER_PARTY_ID;	
-                //list += '<li id="worker_' + value.WORKER_PARTY_ID + '" onclick="graphs(' + value.WORKER_PARTY_ID + ')" class="menu--item"><div class="left_div"><label class="menu--link" title="' + value.INDIV_FULL_NM + '"><img src="' + image + '" alt="' + value.INDIV_FULL_NM + '" /><p>Unit: "' + value.ORGANIZATION_UNIT_CD + '"</p></label></div><div class="right_div"><p>' + value.INDIV_FULL_NM + '</p><p>"' + value.job_description + '"</p></div></li>';
-				list += '<li id="worker_' + value.WORKER_PARTY_ID + '" class="menu--item"><label class="menu--link" title="' + value.INDIV_FULL_NM + '">' + value.INDIV_FULL_NM + '</label></li>';
+                list += '<li id="worker_' + value.WORKER_PARTY_ID + '" onclick="graphs(' + value.WORKER_PARTY_ID + ')" class="menu--item"><div class="left_div"><label class="menu--link" title="' + value.INDIV_FULL_NM + '"><img src="' + image + '" alt="' + value.INDIV_FULL_NM + '" /><p>Unit: "' + value.ORGANIZATION_UNIT_CD + '"</p></label></div><div class="right_div"><p>' + value.INDIV_FULL_NM + '</p><p>"' + value.job_description + '"</p></div></li>';
+				//list += '<li id="worker_' + value.WORKER_PARTY_ID + '" class="menu--item"><label class="menu--link" title="' + value.INDIV_FULL_NM + '">' + value.INDIV_FULL_NM + '</label></li>';
 				level1_workerid.push(value.WORKER_PARTY_ID);
             }
         });
