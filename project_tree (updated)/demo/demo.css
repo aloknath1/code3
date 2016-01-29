@@ -152,10 +152,14 @@ header h1 {
 	float:left;		
 	width:350px;
 	height:400px;
-	margin:0 !important;
+	margin-left:2%;
 	padding:0 !important;
 }
 
+.bar_chart2
+{	
+	margin-left:0% !important;	
+}
 
 
 .person_name
