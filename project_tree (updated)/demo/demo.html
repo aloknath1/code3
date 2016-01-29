@@ -1,63 +1,58 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <title>EIBI Dashboard</title>
+    <meta charset="UTF-8">
+    <title>EIBI Dashboard</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <link href='../src/vendor/normalize.css/normalize.css' rel='stylesheet'>
-  <link href='../src/vendor/fontawesome/css/font-awesome.min.css' rel='stylesheet'>
-  <link href="../dist/vertical-responsive-menu.min.css" rel="stylesheet">
-  <link href="demo.css" rel="stylesheet">
-  <script src="js/jquery-1.12.0.js"></script>
-  <script src="../dist/vertical-responsive-menu.min.js"></script> 
+    <link href='../src/vendor/normalize.css/normalize.css' rel='stylesheet'>
+    <link href='../src/vendor/fontawesome/css/font-awesome.min.css' rel='stylesheet'>
+    <link href="../dist/vertical-responsive-menu.min.css" rel="stylesheet">
+    <link href="demo.css" rel="stylesheet" />
+    <script src="js/jquery-1.12.0.js"></script>
+	 
 </head>
 
 <body>
 
-  <header class="header clearfix">
-    <button type="button" id="toggleMenu" class="toggle_menu">
-      <i class="fa fa-bars"></i>
-    </button>
-    <h1>EIBI Dashboard</h1>
-  </header>
+    <header class="header clearfix">
+        <button type="button" id="toggleMenu" class="toggle_menu">
+            <i class="fa fa-bars"></i>
+        </button>
+        <h1>EIBI Dashboard</h1>
+    </header>
 
-  <nav class="vertical_nav">
+    <nav class="vertical_nav">
+        <ul id="js-menu" class="menu"></ul>
+    </nav>
 
-    <ul id="js-menu" class="menu"></ul>
+    <div class="wrapper">
+        <h2 class="person_name"></h2>
+        <section>
 
-    <button id="collapse_menu" class="collapse_menu" style="display:none;">
-      <i class="collapse_menu--icon  fa fa-fw"></i>
-      <span class="collapse_menu--label">Recolher menu</span>
-    </button>
+            <ul>
+                <li>
+                    <div id="charts">
+                        <div class="bar_chart1"></div>
+                        <div class="donut_chart"></div>
+                        <div class="bar_chart2"></div>
+                    </div>
+                </li>
 
-  </nav>
+                <li>
+                    <div id="line_graph"></div>
+                </li>
+            </ul>
 
+        </section>
+    </div>
 
-  <div class="wrapper">
-	<h2 class="person_name"></h2>
-    <section>
-			
-			<ul>
-			<li>
-				<div id="charts">
-					<div class="bar_chart1"></div>
-					<div class="donut_chart"></div>
-					<div class="bar_chart2"></div>
-				</div>	
-			</li>
-			
-			<li>
-				<div id="line_graph"></div>
-			</li>	
-		</ul>
-		
-    </section>
-  </div>
-
-  <script src="js/d3.v3.min.js"></script>
-  <script src="js/common.js"></script>
+    <script src="js/d3.v3.min.js"></script>
+    <script src="js/vertical-responsive-menu.js"></script> 
+	<script src="js/common.js"></script>
+	
 </body>
+
 </html>
