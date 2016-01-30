@@ -62,8 +62,8 @@ $(document).ready(function () {
         $.each(data1, function (key, value) {
             if (value.emplevel == 1) {
 				var worker_id = value.WORKER_PARTY_ID;	
-                list += '<li id="worker_' + value.WORKER_PARTY_ID + '" onclick="graphs(' + value.WORKER_PARTY_ID + ')" class="menu--item"><div class="left_div"><label class="menu--link" title="' + value.INDIV_FULL_NM + '"><img src="' + image + '" alt="' + value.INDIV_FULL_NM + '" /><p>Unit: "' + value.ORGANIZATION_UNIT_CD + '"</p></label></div><div class="right_div"><p>' + value.INDIV_FULL_NM + '</p><p>"' + value.job_description + '"</p></div></li>';
-				//list += '<li id="worker_' + value.WORKER_PARTY_ID + '" class="menu--item"><label class="menu--link" title="' + value.INDIV_FULL_NM + '">' + value.INDIV_FULL_NM + '</label></li>';
+                //list += '<li id="worker_' + value.WORKER_PARTY_ID + '" onclick="graphs(' + value.WORKER_PARTY_ID + ')" class="menu--item"><div class="left_div"><label class="menu--link" title="' + value.INDIV_FULL_NM + '"><img src="' + image + '" alt="' + value.INDIV_FULL_NM + '" /><p>Unit: "' + value.ORGANIZATION_UNIT_CD + '"</p></label></div><div class="right_div"><p>' + value.INDIV_FULL_NM + '</p><p>"' + value.job_description + '"</p></div></li>';
+				list += '<li id="worker_' + value.WORKER_PARTY_ID + '" onclick="graphs(' + value.WORKER_PARTY_ID + ')" class="menu--item"><label class="menu--link" title="' + value.INDIV_FULL_NM + '">' + value.INDIV_FULL_NM + '</label></li>';
 				level1_workerid.push(value.WORKER_PARTY_ID);
             }
         });
@@ -81,11 +81,16 @@ $(document).ready(function () {
 				$("#worker_"+value1.SUPERVISOR_PARTY_ID+" ul.sub_menu").append(list);			
 			}
 		});		
-    });
+    });		
 });
 
-
 function graphs(worker_id) {
+	
+	if($("#worker_"+worker_id).hasClass("menu--item__has_sub_menu"))
+	{
+		$(".menu--subitens__opened").removeClass("menu--subitens__opened");	
+		$("#worker_"+worker_id).addClass("menu--subitens__opened");			//adding the class to li element
+	}
 
     var name = $('#worker_' + worker_id + ' label').attr('title');
 
@@ -252,7 +257,7 @@ function barchart2() {
             bottom: 80,
             left: 80
         },
-        width = 450 - margin.left - margin.right,
+        width = 400 - margin.left - margin.right,
         height = 400 - margin.top;
 
     var x0 = d3.scale.ordinal()
