@@ -236,3 +236,14 @@ header h1 {
 .value-3 {
    fill: green;
 }
+
+#filter_btn{
+	display:none;
+	float:right;
+	border:0px solid red;
+}
+
+#line_graph
+{
+	margin-top:2%;
+}
