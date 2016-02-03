@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>EIBI Dashboard</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link href='../src/vendor/normalize.css/normalize.css' rel='stylesheet'>
+    <link href='../src/vendor/fontawesome/css/font-awesome.min.css' rel='stylesheet'>
+    <link href="../src/vertical-responsive-menu.css" rel="stylesheet">
+	<link href="bootstrap.css" rel="stylesheet">
+    <link href="demo.css" rel="stylesheet" />
+    <script src="js/jquery-1.12.0.js"></script>	 
+	<style>
+		.axis path,
+		.axis line {
+		  fill: none;
+		  stroke: #000;
+		  shape-rendering: crispEdges;
+		}
+
+		.x.axis path {
+		  display: none;
+		}
+				
+
+		.line {
+		  fill: none;
+		  stroke: steelblue;
+		  stroke-width: 1.5px;
+		}
+		
+	</style>
+</head>
+
+<body>
+
+    <header class="header">
+        <button type="button" id="toggleMenu" class="toggle_menu">
+            <i class="fa fa-bars"></i>
+        </button>
+        <h1>EIBI Dashboard</h1>
+    </header>
+	
+	<nav class="vertical_nav">
+		<ul id="js-menu" class="menu"></ul>
+	</nav>
+		
+    <div class="wrapper">		
+		<iframe src="http://www.jslint.com/" width="800px" height="800px" style="display:none;"></iframe>
+    </div>
+	<script src="js/d3.v3.min.js"></script>   
+	<script src="js/common2.js"></script>
+	 
+</body>
+
+</html>
