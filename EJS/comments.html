@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>Satisfaction Dashboard</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+    
+    <!-- d3 library -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.13/d3.min.js"></script>
+	
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="theme.css" />
+
+    <script>
+   
+   document.getElementsByTagName("html")[0].style.visibility = "visible"; 
+    var activebutton = "";
+	
+	
+   </script>
+   
+    <style type="text/css">
+
+.paging-nav {
+  text-align: right;
+  padding-top: 2px;
+}
+
+.paging-nav a {
+  margin: auto 1px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 1px 7px;
+  background: #91b9e6;
+  color: white;
+  border-radius: 3px;
+}
+
+.paging-nav .selected-page {
+  background: #187ed5;
+  font-weight: bold;
+}
+
+.paging-nav,
+#tableData {
+  width: 400px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+</style>
+</head> 
+
+<body role="document" bg-color="#fff">
+    
+
+<div class="container-fluid" id="visualizationArea">
+    
+<div class="row">
+    <div class="header">
+        <div class="logo">
+        </div>
+        <div class="headertitle">
+            <span class="maintitle">Employee Job Satisfaction Pulse Comments Page</span>
+            <br>
+            <div class="subtitle" id="subtile">Data represents responses from the last 7 days for the enterprise.</div>
+        </div>
+        <div class="welcome">
+            <div class="name" id="preferredname"></div>
+            <br>
+                <div class="data">Data as of <div id="daten" class="date"></div></div>
+                <br>
+                <!--<div class="help"><a href="http://team.usaa.com\sites\ps\wkfcplan\WIT Reference Materials\EmpJobSatPulse\EJSP Dashboard Reference Guide.pdf">Dashboard Help </a> &nbsp; &nbsp; &#124; -->
+                  <div class="refresh"><!--<a href=resetChart();>--><a onclick="resetChart();"><!--<a onclick="" href="/entD3Visualization/EmployeeJobSat/satisfactiondashboard.html">--><!--<span aria-hidden='true' class="glyphicon glyphicon-refresh"></span>--> Reset Comments</a></div>
+                <!--</div>-->
+        </div>
+    </div>
+     <!-- /container -->
+    
+<div class="commentscontent">
+  
+   <div style="width:100%">
+      
+    <input type="hidden" name="filterForm24c_hf_0" id="filterForm24c_hf_0">
+
+<select id="Employee Type"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" name="projectSelect" aria-expanded="true" style="float:left" >
+<option selected="selected" value="">Choose One</option>
+<option value="4">Enterprise</option>
+<option value="8">Member Contact</option>
+<option value="83">Non-Member Contact</option>
+</select>
+
+<select id="Location" class="btn btn-default dropdown-toggle" data-toggle="dropdown" name="typeSelect" aria-expanded="true" style="float:left">
+<option selected="selected" value="">Choose One</option>
+<option value="0">Virginia Beach</option>
+<option value="1">Tampa</option>
+<option value="2">San Antonio</option>
+<option value="3">Phoenix</option>
+<option value="4">Dallas-Forthworth</option>
+<option value="2">Colorado Springs</option>
+<option value="3">others</option>
+</select>
+
+<button type="submit"  class="btn btn-success" name="ajaxSubmit" id="ajaxSubmit24d">Filter</button>
+
+<button type="submit" class="btn btn-info" name="ajaxReset" id="ajaxReset24e">Reset</button>
+
+</div>
+<div class="table_body">
+     <table id='list_table' class='table table-striped'>
+        <thead>
+		<tr>
+             <td>
+                 <div class='table_heading'>COMMENTS</div> 
+             </td>
+         </tr>
+		</thead>
+		<tbody>
+		<tr>
+            <td><a href="#">AWESOME Today!!</a></td>
+            <td><div class='test'></div></td> 
+			<td></td>
+         </tr>
+          <tr>
+             <td><a href="#">be a little more happy if my computer would connect to the exchange a little faster ;)</a></td>                
+             <td><div class='test'></div></td> 
+         </tr>
+         <tr>
+            <td><a href="#">There are many loving, joyful, and abundant people here at USAA. Those people make up 98%....</a></td>
+            <td><div class='test'></div></td> 
+         </tr>
+         <tr>
+            <td><a href="#">I am proud everyday but especially today to work for an organization who is truly dedicated to supporting....</a></td>
+            <td><div class='test'></div></td> 
+         </tr>
+         <tr>
+             <td><a href="#">stressed out of my mind.....Too many memebers...not enough claims reps</a></td>
+             <td><div class='test'></div></td> 
+         </tr>
+         <tr>
+            <td><a href="#">AWESOME Today!!</a></td>
+            <td><div class='test'></div></td> 
+         </tr>
+         <tr>
+             <td><a href="#">Working with coworkers whom are resistant to change, stuck in the old mindset-makes it very difficult... UGH</a></td>
+			 <td><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalHorizontal">Report</button></td>
+			 <td><div class='test'></div></td> 
+         </tr>
+         <tr>
+             <td><a href="#">The main contributor to the rating was the communication by my manager. While on maternity leave my manager.... </a></td>
+             <td><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalHorizontal">Report</button></td>
+             <td><div class='test'></div></td> 
+         </tr>
+         <tr>
+             <td><a href='#'>IDCOMM MELTDOWN</a></td>
+             <td><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalHorizontal">Report</button></td>
+             <td><div class='test'></div></td> 
+         </tr>
+         <tr>
+            <td><a href="#">Flexibility! Working from home today, waiting for a service person and doing some tedious sorting and entering.... </a></div>
+            <td><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalHorizontal">Report</button></td>
+            <td><div class='test'></div></td> 
+         </tr>
+         <tr>
+            <td><a href='#'>always room for improvement</a></div>
+            <td><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalHorizontal">Report</button></td>
+            <td><div class='test'></div></td> 
+         </tr>
+		</tbody>
+     </table>
+ </div>
+</div>
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Modal title
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label  class="col-sm-2 control-label"
+                              for="inputEmail3">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" 
+                        id="inputEmail3" placeholder="Email"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label"
+                          for="inputPassword3" >Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control"
+                            id="inputPassword3" placeholder="Password"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <div class="checkbox">
+                        <label>
+                            <input type="checkbox"/> Remember me
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-default">Sign in</button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                            Close
+                </button>
+                <button type="button" class="btn btn-primary">
+                    Save changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<!-- Paging -->
+<script type="text/javascript" src="js/paging.js"></script>
+	
+<script>
+	$(document).ready(function() {
+		$('#list_table').paging({limit:15});
+	});
+	
+</script>
+
+</body>
+</html>
