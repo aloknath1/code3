@@ -15,21 +15,22 @@
     <script src="js/jquery-1.12.0.js"></script>	 
 	<style>
 		.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
+		.axis line {
+		  fill: none;
+		  stroke: #000;
+		  shape-rendering: crispEdges;
+		}
 
-.x.axis path {
-  display: none;
-}
+		.x.axis path {
+		  display: none;
+		}
+				
 
-.line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 1.5px;
-}
+		.line {
+		  fill: none;
+		  stroke: steelblue;
+		  stroke-width: 1.5px;
+		}
 	</style>
 </head>
 
@@ -41,33 +42,40 @@
         </button>
         <h1>EIBI Dashboard</h1>
     </header>
-
-    <nav class="vertical_nav">
-        <ul id="js-menu" class="menu"></ul>
-    </nav>
-
-    <div class="wrapper">
-        <h2 class="person_name"></h2>
-		<div id="filter_btn">
-			<button id="monthly" class="btn btn-primary">Monthly</button>
-			<button id="weekly" class="btn btn-primary">Weekly</button>			
+	
+	<nav class="vertical_nav">
+		<ul id="js-menu" class="menu"></ul>
+	</nav>
+		
+    <div class="wrapper">		
+		<div class="col-md-12">
+			<div class="nameHeading">
+				<h2 class="person_name"></h2>
+				<div id="filter_btn">
+					<button id="monthly" class="btn btn-primary">Monthly</button>
+					<button id="weekly" class="btn btn-primary">Weekly</button>			
+				</div>
+			</div>
+			<div class="row col-md-12">
+				<div class="row">				
+					<div class="col-md-6">
+						<div class="donut_chart"></div>
+					</div>
+					 
+					<div class="col-md-6">
+						<div id="line_graph"></div>
+					</div>
+				</div>	
+				<div class="row col-md-12">
+					<div class="col-md-6">
+					   <div class="bar_chart1"></div>
+					</div>
+					<div class="col-md-6">
+						<div class="bar_chart2"></div>
+					</div>
+				</div>					
+			</div>			
 		</div>
-        <section>
-            <ul>
-                <li>
-                    <div id="charts">
-                        <div class="bar_chart1"></div>
-                        <div class="donut_chart"></div>
-                        <div class="bar_chart2"></div>
-                    </div>
-                </li>
-
-                <li>
-                    <div id="line_graph"></div>
-                </li>
-            </ul>
-
-        </section>
     </div>
 
     <script src="js/d3.v3.min.js"></script>    
