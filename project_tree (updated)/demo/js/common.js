@@ -47,7 +47,7 @@ $(document).ready(function () {
             if (value.emplevel == 1) {
 				var worker_id = value.WORKER_PARTY_ID;	
                
-				list += '<li id="worker_' + value.WORKER_PARTY_ID + '" title="' + $.trim(value.INDIV_FULL_NM) + '" class="menu--item"><label class="menu--link" title="' + $.trim(value.INDIV_FULL_NM) + '">' + $.trim(value.INDIV_FULL_NM) + '</label></li>';
+				list += '<li id="worker_' + value.WORKER_PARTY_ID + '" title="' + $.trim(value.INDIV_FULL_NM) + '" class="menu--item"><div class="left_div"><label class="menu--link" title="' + value.INDIV_FULL_NM + '"><img src="' + image + '" alt="' + value.INDIV_FULL_NM + '" /><p>Unit: "' + value.ORGANIZATION_UNIT_CD + '"</p></label></div><div class="right_div"><p>' + value.INDIV_FULL_NM + '</p><p>"' + value.JOB_DESCRIPTION + '"</p></div></li>';
 				level1_workerid.push(value.WORKER_PARTY_ID);
             }
         });
@@ -61,7 +61,7 @@ $(document).ready(function () {
 					$("#worker_"+value1.SUPERVISOR_PARTY_ID).append("<ul class='sub_menu'></ul>");
 				}
 				
-				list = '<li id="worker_' + value1.WORKER_PARTY_ID + '" title="' + value1.INDIV_FULL_NM + '" class="sub_menu--item" ><a href="#" title="' + value1.INDIV_FULL_NM + '" class="sub_menu--link">' + $.trim(value1.INDIV_FULL_NM) + '</a></li>';
+				list = '<li id="worker_' + value1.WORKER_PARTY_ID + '" title="' + value1.INDIV_FULL_NM + '" class="sub_menu--item" ><div class="left_div"><label class="menu--link" title="' + value1.INDIV_FULL_NM + '"><img src="' + image + '" alt="' + value1.INDIV_FULL_NM + '" /><p>Unit: "' + value1.ORGANIZATION_UNIT_CD + '"</p></label></div><div class="right_div"><p>' + value1.INDIV_FULL_NM + '</p><p>"' + value1.JOB_DESCRIPTION + '"</p></div></li>';
 				$("#worker_"+value1.SUPERVISOR_PARTY_ID+" ul.sub_menu").append(list);		
 			}
 		});		
