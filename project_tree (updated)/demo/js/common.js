@@ -4,28 +4,7 @@ var dtlist = '';
 var level1_workerid = new Array();
 var image = 'imgs/man.jpg';
 var list_submenu = '';
-var dataset = [
-    {
-        label: 'FTE',
-        count: 10
-    },
-    {
-        label: 'On-site',
-        count: 20
-    },
-    {
-        label: 'Off-site',
-        count: 30
-    },
-    {
-        label: 'Near shore',
-        count: 40
-    },
-    {
-        label: 'Domestic',
-        count: 50
-    }
-        ];
+
 
 var margin = {
     top: 80,
@@ -41,13 +20,19 @@ var format2 = d3.time.format("%B %d,%Y | %H:%M");
 var vis = d3.select("#date_time")
     .text("Date as of " + format2(new Date("12/16/15")));
 
+var quote = String.fromCharCode(39);
+	 
 $(document).ready(function () {
+	
+	
+
+	
 	//for james 
 	$.getJSON('http://localhost:8100/d3_practice/project_tree/demo/jamesmillerdata.json', function (data) {
         dtlist = data;
         $.each(data, function (key, value) {
             if (value.emplevel == 1) {
-              list += '<li id="worker_' + value.WORKER_PARTY_ID + '" onclick="graphs(' + value.WORKER_PARTY_ID + ')" class="menu--item  menu--item"> <div class="left_div"><label class="menu--link" title="' + value.INDIV_FULL_NM + '"><img src="' + image + '" alt="' + value.INDIV_FULL_NM + '" /><p>Unit: "' + value.ORGANIZATION_UNIT_CD + '"</p></label></div><div class="right_div"><p>' + value.INDIV_FULL_NM + '</p><p>"' + value.JOB_DESCRIPTION + '"</p></div></li>';
+              list += '<li id="worker_' + value.WORKER_PARTY_ID + '" title="' + value.INDIV_FULL_NM + '" class="menu--item"> <div class="left_div"><label class="menu--link" title="' + value.INDIV_FULL_NM + '"><img src="' + image + '" alt="' + value.INDIV_FULL_NM + '" /><p>Unit: "' + value.ORGANIZATION_UNIT_CD + '"</p></label></div><div class="right_div"><p>' + value.INDIV_FULL_NM + '</p><p>"' + value.JOB_DESCRIPTION + '"</p></div></li>';
             }
         });
         
@@ -61,8 +46,8 @@ $(document).ready(function () {
         $.each(data1, function (key, value) {
             if (value.emplevel == 1) {
 				var worker_id = value.WORKER_PARTY_ID;	
-                //list += '<li id="worker_' + value.WORKER_PARTY_ID + '" onclick="graphs(' + value.WORKER_PARTY_ID + ')" class="menu--item"><div class="left_div"><label class="menu--link" title="' + value.INDIV_FULL_NM + '"><img src="' + image + '" alt="' + value.INDIV_FULL_NM + '" /><p>Unit: "' + value.ORGANIZATION_UNIT_CD + '"</p></label></div><div class="right_div"><p>' + value.INDIV_FULL_NM + '</p><p>"' + value.job_description + '"</p></div></li>';
-				list += '<li id="worker_' + value.WORKER_PARTY_ID + '" onclick="graphs(' + value.WORKER_PARTY_ID + ')" class="menu--item"><label class="menu--link" title="' + value.INDIV_FULL_NM + '">' + value.INDIV_FULL_NM + '</label></li>';
+               
+				list += '<li id="worker_' + value.WORKER_PARTY_ID + '" title="' + $.trim(value.INDIV_FULL_NM) + '" class="menu--item"><label class="menu--link" title="' + $.trim(value.INDIV_FULL_NM) + '">' + $.trim(value.INDIV_FULL_NM) + '</label></li>';
 				level1_workerid.push(value.WORKER_PARTY_ID);
             }
         });
@@ -76,11 +61,12 @@ $(document).ready(function () {
 					$("#worker_"+value1.SUPERVISOR_PARTY_ID).append("<ul class='sub_menu'></ul>");
 				}
 				
-				list = '<li id="worker_' + value1.WORKER_PARTY_ID + '" class="sub_menu--item"><a href="#" onclick="graphs(' + value1.WORKER_PARTY_ID + ')" class="sub_menu--link">' + value1.INDIV_FULL_NM + '</a></li>';
-				$("#worker_"+value1.SUPERVISOR_PARTY_ID+" ul.sub_menu").append(list);			
+				list = '<li id="worker_' + value1.WORKER_PARTY_ID + '" title="' + value1.INDIV_FULL_NM + '" class="sub_menu--item" ><a href="#" title="' + value1.INDIV_FULL_NM + '" class="sub_menu--link">' + $.trim(value1.INDIV_FULL_NM) + '</a></li>';
+				$("#worker_"+value1.SUPERVISOR_PARTY_ID+" ul.sub_menu").append(list);		
 			}
 		});		
     });			
+	
 	
 	//button clicks
 	$("#monthly").click(function(){
@@ -94,24 +80,33 @@ $(document).ready(function () {
 		donut_chart();		
 		barchart2_weekly(proj_type);
 	});
+	
+	$('body').on('click', 'li', function(event){
+		var id = event.currentTarget.id;
+		graphs(id);	
+		event.preventDefault();
+		return false;
+	});
 });
 
 function graphs(worker_id) {
 	
-	if($("#worker_"+worker_id).hasClass("menu--item__has_sub_menu"))
+	$(".person_name").text('');
+	var name = '';
+	
+	if($('#'+worker_id).hasClass("menu--item__has_sub_menu"))
 	{
 		$(".menu--subitens__opened").removeClass("menu--subitens__opened");	
-		$("#worker_"+worker_id).addClass("menu--subitens__opened");			//adding the class to li element
+		$("#"+worker_id).addClass("menu--subitens__opened");			//adding the class to li element
 	}
-
-    var name = $('#worker_' + worker_id + ' label').attr('title');
-
-    $(".person_name").text(name);
-
+	
+	name = $("#"+worker_id).attr('title');
+	$(".person_name").text(name);
+	
 	$("#filter_btn").css("display","block");
 	
     //calling all graphs on click
-    barchart1_monthly(proj_type); //bar chart1
+    barchart1_weekly(proj_type); //bar chart1
     donut_chart(); // donut chart
-    barchart2_monthly(proj_type); //barchart2    
+    barchart2_weekly(proj_type); //barchart2    
 }
